@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java CI with Docker
 
 on:
   push:
@@ -38,11 +38,33 @@ jobs:
     - name: Make mvnw executable
       run: chmod +x ./mvnw
 
-    - name: Build and test with Maven
-      run: ./mvnw -B clean install
-      env:
-        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/fitness
-        SPRING_DATASOURCE_USERNAME: user
-        SPRING_DATASOURCE_PASSWORD: pass
-        STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
-        CI: true
+    - name: Build with Maven
+      run: ./mvnw -B clean package -DskipTests
+
+    - name: Build Docker image
+      run: docker build -t fitness-app .
+
+    - name: Run Docker container
+      run: |
+        docker run -d --name fitness-app-container \
+          --network=host \
+          -e SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/fitness \
+          -e SPRING_DATASOURCE_USERNAME=user \
+          -e SPRING_DATASOURCE_PASSWORD=pass \
+          -e STRIPE_API_KEY=${{ secrets.STRIPE_API_KEY }} \
+          fitness-app
+
+    - name: Wait for application to start
+      run: |
+        sleep 10
+        for i in {1..10}; do
+          if curl -f http://localhost:8080/actuator/health; then
+            echo "Application is up and running!"
+            exit 0
+          fi
+          echo "Waiting for application to start... attempt $i"
+          sleep 5
+        done
+        echo "Application failed to start"
+        docker logs fitness-app-container
+        exit 1
