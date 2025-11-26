@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{employee.panel.title}"></title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/tables.css" />
+    <link rel="stylesheet" href="/css/language-switcher.css" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+      <h1 th:text="#{employee.panel.title}"></h1>
+      <a href="/employee/members" th:text="#{employee.panel.manageMembers}"></a>
+      <br />
+      <a
+        href="/employee/services"
+        th:text="#{employee.panel.manageServices}"
+      ></a>
+      <br />
+      <a
+        href="/employee/appointments"
+        th:text="#{employee.panel.manageAppointments}"
+      ></a>
+    </main>
+  </body>
+</html>

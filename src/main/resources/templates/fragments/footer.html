@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <div th:fragment="footer">
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3 th:text="#{footer.about}">About Us</h3>
+        </div>
+
+        <div class="footer-section">
+          <h3 th:text="#{footer.contact}">Contact</h3>
+          <ul>
+            <li>Email: info@fitnesscenter.com</li>
+            <li>Phone: +1 234 567 890</li>
+            <li>Address: 123 Fitness St, Beograd</li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3 th:text="#{footer.links}">Quick Links</h3>
+          <ul>
+            <li><a th:href="@{/}" th:text="#{nav.home}">Home</a></li>
+            <li><a th:href="@{/about}" th:text="#{nav.about}">About</a></li>
+            <li>
+              <a th:href="@{/contact}" th:text="#{nav.contact}">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          &copy; 2024 Fitness Center.
+          <span th:text="#{footer.rights}">All rights reserved.</span>
+        </p>
+      </div>
+    </footer>
+  </div>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<div th:fragment="navbar">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a th:href="@{/}" class="navbar-brand">Fitness Center</a>
+            
+            <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                <!-- Admin Links -->
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{/admin}" th:text="#{nav.admin.panel}">Admin Panel</a>
+                </li>
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{/admin/locations}" th:text="#{nav.manage.locations}">Locations</a>
+                </li>
+                <li sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{/admin/employees}" th:text="#{nav.manage.employees}">Employees</a>
+                </li>
+                
+                <!-- Employee Links -->
+                <li sec:authorize="hasRole('EMPLOYEE')">
+                    <a th:href="@{/employee}" th:text="#{nav.employee.panel}">Employee Panel</a>
+                </li>
+                <li sec:authorize="hasRole('EMPLOYEE')">
+                    <a th:href="@{/employee/members}" th:text="#{nav.manage.members}">Members</a>
+                </li>
+                <li sec:authorize="hasRole('EMPLOYEE')">
+                    <a th:href="@{/employee/services}" th:text="#{nav.manage.services}">Services</a>
+                </li>
+                <li sec:authorize="hasRole('EMPLOYEE')">
+                    <a th:href="@{/employee/appointments}" th:text="#{nav.manage.appointments}">Appointments</a>
+                </li>
+                
+                <!-- Member Links -->
+                <li sec:authorize="hasRole('MEMBER')">
+                    <a th:href="@{/member}" th:text="#{nav.member.panel}">Member Panel</a>
+                </li>
+                <li sec:authorize="hasRole('MEMBER')">
+                    <a th:href="@{/member/purchases}" th:text="#{nav.my.purchases}">My Purchases</a>
+                </li>
+                <li sec:authorize="hasRole('MEMBER')">
+                    <a th:href="@{/member/reservations}" th:text="#{nav.my.reservations}">My Reservations</a>
+                </li>
+            </ul>
+            
+            <div class="navbar-actions" sec:authorize="isAuthenticated()">
+                <span class="user-info" th:text="'Welcome, ' + ${#authentication.name}"></span>
+                <div class="language-switcher">
+                    <button class="language-btn" onclick="toggleLanguageDropdown()">
+                        <span th:text="#{nav.language}">Language</span> ▼
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <a href="?lang=en" class="language-option">
+                            <span class="flag-icon">🇺🇸</span> English
+                        </a>
+                        <a href="?lang=sr" class="language-option">
+                            <span class="flag-icon">🇷🇸</span> Srpski
+                        </a>
+                    </div>
+                </div>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-secondary" th:text="#{nav.logout}">Logout</button>
+                </form>
+            </div>
+            
+            <!-- Show login link for non-authenticated users -->
+            <div class="navbar-actions" sec:authorize="!isAuthenticated()">
+                <div class="language-switcher">
+                    <button class="language-btn" onclick="toggleLanguageDropdown()">
+                        <span th:text="#{nav.language}">Language</span> ▼
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <a href="?lang=en" class="language-option">
+                            <span class="flag-icon">🇺🇸</span> English
+                        </a>
+                        <a href="?lang=sr" class="language-option">
+                            <span class="flag-icon">🇷🇸</span> Srpski
+                        </a>
+                    </div>
+                </div>
+                <a th:href="@{/login}" class="btn btn-primary" th:text="#{nav.login}">Login</a>
+            </div>
+        </div>
+    </nav>
+    
+    <script>
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('languageDropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(e) {
+            if (!e.target.matches('.language-btn')) {
+                const dropdown = document.getElementById('languageDropdown');
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        });
+    </script>
+</div>
+</html>

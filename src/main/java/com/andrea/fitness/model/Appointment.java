@@ -53,9 +53,8 @@ public class Appointment {
     @OneToMany(mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();
 
-    // test later
-    // @Transient
-    // public int getAvailableSpots() {
-    //     return Math.max(0, maxCapacity - reservations.size());
-    // }
+    @Transient
+    public int getAvailableSpots() {
+        return Math.max(0, maxCapacity - reservations.size());
+    }
 }

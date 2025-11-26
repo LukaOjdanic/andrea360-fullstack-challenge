@@ -49,4 +49,7 @@ public class Purchase {
 
     @Enumerated(EnumType.STRING)
     private PurchaseStatus status = PurchaseStatus.SUCCEEDED;
+
+    @NotNull
+    private Integer usesLeft = 1;
 }

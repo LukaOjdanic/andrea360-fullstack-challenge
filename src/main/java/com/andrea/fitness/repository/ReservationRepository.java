@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.andrea.fitness.model.Appointment;
 import com.andrea.fitness.model.Reservation;
 
 public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
@@ -14,6 +15,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
 
     // to count used spots
     List<Reservation> findByAppointmentId(UUID appointmentId);
+
+    long countByAppointment(Appointment appointment);
 
     // Get all reservations by member
     List<Reservation> findByMemberId(UUID memberId);

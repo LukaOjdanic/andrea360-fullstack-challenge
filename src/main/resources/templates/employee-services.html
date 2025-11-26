@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{service.manage.title}"></title>
+    <meta charset="UTF-8" />
+    <script src="/js/service-management.js" type="module"></script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/tables.css" />
+    <link rel="stylesheet" href="/css/language-switcher.css" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+      <h1 th:text="#{service.manage.title}"></h1>
+
+      <h2 th:text="#{service.create.title}"></h2>
+      <form id="createServiceForm">
+        <label for="name" th:text="#{service.form.name}"></label><br />
+        <input type="text" id="name" name="name" /><br />
+        <label for="price" th:text="#{service.form.price}"></label><br />
+        <input type="number" id="price" name="price" step="0.01" /><br /><br />
+        <button type="submit" th:text="#{service.form.createButton}"></button>
+      </form>
+
+      <h2 th:text="#{service.table.title}"></h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th th:text="#{service.table.id}"></th>
+            <th th:text="#{service.table.name}"></th>
+            <th th:text="#{service.table.price}"></th>
+          </tr>
+        </thead>
+        <tbody id="servicesTableBody"></tbody>
+      </table>
+    </main>
+  </body>
+</html>

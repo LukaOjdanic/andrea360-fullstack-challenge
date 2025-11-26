@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{appointment.manage.title}"></title>
+    <meta charset="UTF-8" />
+    <script src="/js/appointment-management.js" type="module"></script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/tables.css" />
+    <link rel="stylesheet" href="/css/language-switcher.css" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+      <h1 th:text="#{appointment.manage.title}"></h1>
+
+      <h2 th:text="#{appointment.create.title}"></h2>
+      <form id="createAppointmentForm">
+        <label for="startTime" th:text="#{appointment.form.startTime}"></label
+        ><br />
+        <input type="datetime-local" id="startTime" name="startTime" /><br />
+        <label for="endTime" th:text="#{appointment.form.endTime}"></label
+        ><br />
+        <input type="datetime-local" id="endTime" name="endTime" /><br />
+        <label
+          for="maxCapacity"
+          th:text="#{appointment.form.maxCapacity}"
+        ></label
+        ><br />
+        <input type="number" id="maxCapacity" name="maxCapacity" /><br />
+        <label for="locationId" th:text="#{appointment.form.location}"></label
+        ><br />
+        <select id="locationId" name="locationId"></select
+        ><br />
+        <label for="serviceId" th:text="#{appointment.form.service}"></label
+        ><br />
+        <select id="serviceId" name="serviceId"></select
+        ><br /><br />
+        <button
+          type="submit"
+          th:text="#{appointment.form.createButton}"
+        ></button>
+      </form>
+
+      <h2 th:text="#{appointment.table.title}"></h2>
+      <label for="locationFilter" th:text="#{appointment.filter.title}"></label>
+      <select id="locationFilter" name="locationFilter">
+        <option value="" th:text="#{appointment.filter.allLocations}"></option>
+      </select>
+      <table border="1">
+        <thead>
+          <tr>
+            <th th:text="#{appointment.table.id}"></th>
+            <th th:text="#{appointment.table.startTime}"></th>
+            <th th:text="#{appointment.table.endTime}"></th>
+            <th th:text="#{appointment.table.maxCapacity}"></th>
+            <th th:text="#{appointment.table.availableSpots}"></th>
+            <th th:text="#{appointment.table.locationId}"></th>
+            <th th:text="#{appointment.table.serviceId}"></th>
+            <th th:text="#{appointment.table.serviceName}"></th>
+          </tr>
+        </thead>
+        <tbody id="appointmentsTableBody"></tbody>
+      </table>
+    </main>
+  </body>
+</html>

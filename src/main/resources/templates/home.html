@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+      <h1>Welcome to Andrea Fitness!</h1>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+  </body>
+</html>

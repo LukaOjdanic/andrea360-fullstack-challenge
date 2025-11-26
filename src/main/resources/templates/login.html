@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{login.page.title}">Login</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/tables.css" />
+    <link rel="stylesheet" href="/css/language-switcher.css" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+      <div class="login-container">
+        <h1 th:text="#{login.form.title}">Login</h1>
+        <form th:action="@{/login}" method="post">
+          <div th:if="${param.error}" class="error-message">
+            <p th:text="#{login.error.invalidCredentials}">
+              Invalid username or password.
+            </p>
+          </div>
+          <div th:if="${param.logout}" class="error-message">
+            <p th:text="#{login.message.loggedOut}">
+              You have been logged out.
+            </p>
+          </div>
+          <label for="username" th:text="#{login.form.username}"
+            >Username:</label
+          >
+          <input
+            type="text"
+            id="username"
+            name="username"
+            autofocus="autofocus"
+          />
+          <label for="password" th:text="#{login.form.password}"
+            >Password:</label
+          >
+          <input type="password" id="password" name="password" />
+          <button type="submit" th:text="#{login.form.submit}">Login</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

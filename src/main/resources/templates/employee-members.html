@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{member.manage.title}"></title>
+    <meta charset="UTF-8" />
+    <script src="/js/member-management.js" type="module"></script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/tables.css" />
+    <link rel="stylesheet" href="/css/language-switcher.css" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+      <h1 th:text="#{member.manage.title}"></h1>
+
+      <h2 th:text="#{member.create.title}"></h2>
+      <form id="createMemberForm">
+        <label for="firstName" th:text="#{member.form.firstName}"></label><br />
+        <input type="text" id="firstName" name="firstName" /><br />
+        <label for="lastName" th:text="#{member.form.lastName}"></label><br />
+        <input type="text" id="lastName" name="lastName" /><br />
+        <label for="email" th:text="#{member.form.email}"></label><br />
+        <input type="email" id="email" name="email" /><br />
+        <label for="password" th:text="#{member.form.password}"></label><br />
+        <input type="password" id="password" name="password" /><br />
+        <label for="locationId" th:text="#{member.form.location}"></label><br />
+        <select id="locationId" name="locationId"></select
+        ><br /><br />
+        <button type="submit" th:text="#{member.form.createButton}"></button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{purchase.available.title}"></title>
+    <meta charset="UTF-8" />
+    <script src="/js/purchase-management.js" type="module"></script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/tables.css" />
+    <link rel="stylesheet" href="/css/language-switcher.css" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+      <h1 th:text="#{purchase.available.title}"></h1>
+
+      <table border="1">
+        <thead>
+          <tr>
+            <th th:text="#{purchase.table.id}"></th>
+            <th th:text="#{purchase.table.serviceId}"></th>
+            <th th:text="#{purchase.table.serviceName}"></th>
+            <th th:text="#{purchase.table.amount}"></th>
+            <th th:text="#{purchase.table.status}"></th>
+            <th th:text="#{purchase.table.purchasedAt}"></th>
+          </tr>
+        </thead>
+        <tbody id="purchasesTableBody"></tbody>
+      </table>
+    </main>
+  </body>
+</html>

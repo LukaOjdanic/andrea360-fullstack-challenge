@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="#{employee.manage.title}"></title>
+    <meta charset="UTF-8" />
+    <script src="/js/employee-management.js" type="module"></script>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+    <link rel="stylesheet" href="/css/tables.css" />
+    <link rel="stylesheet" href="/css/language-switcher.css" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="main-content">
+      <h1 th:text="#{employee.manage.title}"></h1>
+
+      <h2 th:text="#{employee.create.title}"></h2>
+      <form id="createEmployeeForm">
+        <label for="firstName" th:text="#{employee.form.firstName}"></label
+        ><br />
+        <input type="text" id="firstName" name="firstName" /><br />
+        <label for="lastName" th:text="#{employee.form.lastName}"></label><br />
+        <input type="text" id="lastName" name="lastName" /><br />
+        <label for="email" th:text="#{employee.form.email}"></label><br />
+        <input type="email" id="email" name="email" /><br />
+        <label for="password" th:text="#{employee.form.password}"></label><br />
+        <input type="password" id="password" name="password" /><br />
+        <label for="locationId" th:text="#{employee.form.location}"></label
+        ><br />
+        <select id="locationId" name="locationId"></select
+        ><br /><br />
+        <button type="submit" th:text="#{employee.form.createButton}"></button>
+      </form>
+
+      <h2 th:text="#{employee.table.title}"></h2>
+      <label for="locationFilter" th:text="#{employee.filter.title}"></label>
+      <select id="locationFilter" name="locationFilter">
+        <option value="" th:text="#{employee.filter.allLocations}"></option>
+      </select>
+      <table border="1">
+        <thead>
+          <tr>
+            <th th:text="#{employee.table.id}"></th>
+            <th th:text="#{employee.table.firstName}"></th>
+            <th th:text="#{employee.table.lastName}"></th>
+            <th th:text="#{employee.table.email}"></th>
+            <th th:text="#{employee.table.role}"></th>
+            <th th:text="#{employee.table.locationId}"></th>
+          </tr>
+        </thead>
+        <tbody id="employeesTableBody"></tbody>
+      </table>
+    </main>
+  </body>
+</html>
